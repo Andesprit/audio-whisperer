@@ -346,36 +346,52 @@ export default function App() {
 
   return (
     <>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Audio Whisperer home">
-          <span className="brand-mark"><WaveIcon /></span>
-          <span>Audio Whisperer</span>
-        </a>
-        <div className="local-badge"><LockIcon /> 100% local · no uploads</div>
+      <header className="press-head">
+        <div className="press-head__bar">
+          <a className="wordmark" href="#top" aria-label="Audio Whisperer home">
+            <span className="wordmark__mark"><WaveIcon /></span>
+            <span>Audio Whisperer</span>
+          </a>
+          <p className="press-head__origin ledger">
+            <LockIcon /> Local press<span> · nothing uploaded</span>
+          </p>
+        </div>
+        <p className="press-head__ledger ledger" role="status" aria-live="polite">
+          <span className="ledger-mark" aria-hidden="true" /> {statusMessage}
+        </p>
       </header>
 
       <main id="main-content">
-        <section className="book-hero" id="top">
-          <div className="hero-copy">
-            <span className="hero-label">Your private reading room</span>
-            <h1>Create an audiobook</h1>
-            <p>Choose a voice, open your manuscript, and turn the next quiet chapter into something you can listen to.</p>
-            <div className="privacy-note">
-              <LockIcon />
-              <div><strong>Private by design</strong><span>Your books and audio never leave this browser.</span></div>
+        <section className="frontispiece" id="top">
+          <figure className="plate">
+            <img
+              src="/images/reading-table-hero.png"
+              alt=""
+              width={1664}
+              height={936}
+              fetchPriority="high"
+            />
+            <figcaption className="ledger">From page to voice, all on your device.</figcaption>
+          </figure>
+          <div className="frontispiece__copy">
+            <div>
+              <h1>Create an audiobook</h1>
+              <p className="lede">
+                Choose a voice, open your manuscript, and turn the next quiet chapter into
+                something you can listen to.
+              </p>
             </div>
-          </div>
-          <div className="hero-image">
-            <img src="/images/reading-table-hero.png" alt="" />
-            <span>From page to voice, all on your device.</span>
+            <div className="assurance">
+              <LockIcon />
+              <div>
+                <strong>Private by design</strong>
+                <span>Your books and audio never leave this browser.</span>
+              </div>
+            </div>
           </div>
         </section>
 
-        <div className="status-bar" role="status" aria-live="polite">
-          <span className="status-dot" /> {statusMessage}
-        </div>
-
-        <div className="app-layout">
+        <div className="press-floor">
           <ModelCatalog
             states={modelStates}
             hasWebGPU={hasWebGPU}
@@ -417,9 +433,17 @@ export default function App() {
         </div>
       </main>
 
-      <footer>
-        <span>Audio Whisperer</span>
-        <span>No account, API key, uploads, or telemetry.</span>
+      <footer className="colophon">
+        <p className="colophon__body">
+          <b>Audio Whisperer</b> is a static browser application. Manuscript text, generated
+          audio, and progress are kept in IndexedDB on this browser profile; narrator files are
+          fetched from Hugging Face on first use and retained in Cache Storage. No account, no
+          API key, no backend, no telemetry. <b>Narrators</b> — Kokoro 82M v1.0, Apache 2.0, via
+          onnx-community; Chatterbox English v1, MIT, via onnx-community. <b>Phonemization</b> —
+          eSpeak NG, GPL-3.0-or-later. <b>Set in</b> Fraunces, IBM Plex Sans, and JetBrains Mono,
+          all self-hosted. <b>Licence</b> — GPL-3.0-or-later; see LICENSE for the full terms.
+        </p>
+        <p className="colophon__mark">Audio Whisperer</p>
       </footer>
     </>
   );

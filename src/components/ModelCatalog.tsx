@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import {
   languagesFor,
   MODEL_CATALOG,
@@ -60,18 +61,21 @@ export function ModelCatalog({
   const incompatible = version?.device === "webgpu" && !hasWebGPU;
 
   return (
-    <aside className="narrator-panel" aria-labelledby="narrator-heading">
-      <div className="narrator-art" aria-hidden="true">
-        <img src="/images/books-and-coffee.png" alt="" />
+    <aside className="sheet sheet--narrator" aria-labelledby="narrator-heading">
+      <div className="headpiece" aria-hidden="true">
+        <img src="/images/books-and-coffee.png" alt="" width={1024} height={1536} loading="lazy" />
       </div>
-      <div className="section-heading narrator-heading">
-        <div>
-          <h2 id="narrator-heading">Narrator setup</h2>
-          <p>Choose each option in order. We only show compatible choices.</p>
+      <div className="stage">
+        <div className="stage__top">
+          <span className="stage__numeral" aria-hidden="true">I</span>
+          <span className="stage__aside">
+            <span className={`runtime-badge ledger ${hasWebGPU ? "available" : "fallback"}`}>
+              {hasWebGPU ? "WebGPU ready" : "WASM mode"}
+            </span>
+          </span>
         </div>
-        <span className={`runtime-badge ${hasWebGPU ? "available" : "fallback"}`}>
-          {hasWebGPU ? "WebGPU ready" : "WASM mode"}
-        </span>
+        <h2 id="narrator-heading">Narrator setup</h2>
+        <p className="stage__note">Choose each option in order. We only show compatible choices.</p>
       </div>
 
       <ol className="narrator-steps">
@@ -144,15 +148,23 @@ export function ModelCatalog({
 
       {model ? (
         <div className={`selected-model${state?.status === "active" ? " active" : ""}`}>
-          <div className="model-title-row">
+          <h3>{model.name}</h3>
+          <dl className="spec-sheet">
             <div>
-              <h3>{model.name}</h3>
-              <span className="model-size">
-                {version?.detail ?? model.sizeLabel} · {model.license}
-              </span>
+              <dt>Build</dt>
+              <dd>{version?.detail ?? model.sizeLabel}</dd>
             </div>
-            {state && <span className={`model-state ${state.status}`}>{stateLabel(state)}</span>}
-          </div>
+            <div>
+              <dt>Licence</dt>
+              <dd>{model.license}</dd>
+            </div>
+            {state && (
+              <div>
+                <dt>State</dt>
+                <dd className={state.status}>{stateLabel(state)}</dd>
+              </div>
+            )}
+          </dl>
           <p>{model.description}</p>
           <div className="tag-list">
             {model.labels.map((label) => <span key={label}>{label}</span>)}
@@ -167,7 +179,7 @@ export function ModelCatalog({
           {state?.error && <p className="error-text" role="alert">{state.error}</p>}
           {state?.status === "downloading" && (
             <div className="progress-track" aria-label={state.progress >= 99 ? `Preparing ${model.name}` : `Downloading ${model.name}`}>
-              <span style={{ width: `${state.progress}%` }} />
+              <span style={{ "--fill": state.progress / 100 } as CSSProperties} />
             </div>
           )}
           {state?.benchmark && <p className="benchmark">Measured ~{state.benchmark.toFixed(1)}× real-time on this device</p>}

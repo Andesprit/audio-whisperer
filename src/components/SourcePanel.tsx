@@ -36,7 +36,7 @@ export function SourcePanel({
 
   return (
     <section
-      className={`source-panel${dragging ? " is-dragging" : ""}`}
+      className={`sheet sheet--source${dragging ? " is-dragging" : ""}`}
       aria-labelledby="source-heading"
       onDragEnter={(event) => { event.preventDefault(); setDragging(true); }}
       onDragOver={(event) => event.preventDefault()}
@@ -45,11 +45,12 @@ export function SourcePanel({
       }}
       onDrop={handleDrop}
     >
-      <div className="section-heading">
-        <div>
-          <h2 id="source-heading">Manuscript</h2>
-          <p>Paste your text below or import a PDF or EPUB from this device.</p>
+      <div className="stage">
+        <div className="stage__top">
+          <span className="stage__numeral" aria-hidden="true">II</span>
         </div>
+        <h2 id="source-heading">Manuscript</h2>
+        <p className="stage__note">Paste your text below or import a PDF or EPUB from this device.</p>
       </div>
 
       <div className="editor-toolbar">

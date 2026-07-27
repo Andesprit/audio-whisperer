@@ -7,3 +7,5 @@ artifacts/
 .env.local
 *.pem
 .DS_Store
+.claude/
+.hallmark/

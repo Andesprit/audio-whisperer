@@ -1,0 +1,91 @@
+/* Hallmark · tokens · theme: custom
+ * vibe: "reading-room hush, vellum and bookcloth green"
+ * axes: light / roman-serif / chromatic-other (bottle-green ~152)
+ * Paper is tinted warm (hue 82, vellum); the accent is bookcloth green (hue 152).
+ * Two hues by design — the vibe names both. See custom-theme.md G.3 precedent.
+ */
+
+:root {
+  /* Surfaces — warm vellum */
+  --color-paper: oklch(94.5% 0.018 82);
+  --color-paper-2: oklch(97.2% 0.013 82);
+  --color-paper-3: oklch(91% 0.022 82);
+
+  /* Ink — bookcloth-tinted near-black */
+  --color-ink: oklch(20% 0.012 150);
+  --color-ink-2: oklch(36% 0.011 150);
+  --color-muted: oklch(46% 0.011 150);
+
+  /* Rules — the divider language. `rule` separates rows (decorative);
+     `rule-strong` carries every real component boundary at 3.1:1+. */
+  --color-rule: oklch(78% 0.016 82);
+  --color-rule-strong: oklch(62% 0.02 82);
+
+  /* Accent — bottle green, a signal and never a field.
+     Chroma is capped at the sRGB ceiling for this L/hue (0.111 at L42 H152);
+     declaring more would only be clipped by the browser. */
+  --color-accent: oklch(42% 0.105 152);
+  --color-accent-wash: oklch(93% 0.03 152);
+  --color-accent-ink: oklch(97.2% 0.013 82);
+  --color-focus: oklch(46% 0.12 152);
+
+  /* Semantic */
+  --color-caution: oklch(50% 0.1 72);
+  --color-critical: oklch(45% 0.15 27);
+
+  /* Type families — 2 + 1. The mono outlier carries one role: machine readout. */
+  --font-display: "Fraunces Variable", "Iowan Old Style", Palatino, Georgia, serif;
+  --font-body: "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-ledger: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+
+  /* Fraunces axis presets — display cut vs reading cut, one family */
+  --fvs-display: "opsz" 144, "SOFT" 0, "WONK" 1, "wght" 400;
+  --fvs-display-medium: "opsz" 144, "SOFT" 0, "WONK" 1, "wght" 500;
+  --fvs-display-semi: "opsz" 144, "SOFT" 0, "WONK" 1, "wght" 600;
+  --fvs-numeral: "opsz" 144, "SOFT" 0, "WONK" 0, "wght" 300;
+  --fvs-reading: "opsz" 12, "SOFT" 30, "WONK" 0, "wght" 400;
+
+  /* Scale — major third, 1.25 */
+  --text-xs: 0.64rem;
+  --text-sm: 0.8rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5625rem;
+  --text-xl: 1.9531rem;
+  --text-2xl: 2.4414rem;
+  --text-display-s: clamp(1.75rem, 2.4vw + 1rem, 2.75rem);
+  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+
+  /* Space — 4pt */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --page-gutter: clamp(1rem, 4vw, 3.5rem);
+
+  /* Rules and radii — printed, not rounded */
+  --rule-hair: 1px;
+  --rule-double: 3px;
+  --radius-sheet: 0;
+  --radius-control: 2px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  /* Elevation order — the head always out-paints in-page sticky sheets. */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+}

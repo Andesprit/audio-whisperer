@@ -13,6 +13,8 @@ npm run dev
 
 The native `onnxruntime-node` install script is intentionally skipped. Audio Whisperer uses the browser-only WebGPU/WASM runtime.
 
+Fraunces, IBM Plex Sans, and JetBrains Mono are self-hosted through `@fontsource-variable` and bundled by Vite. No font CDN is contacted, so the interface renders identically offline once the service worker has cached the shell.
+
 ## Verification
 
 ```bash

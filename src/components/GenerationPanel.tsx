@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { DownloadIcon, SparkIcon, WaveIcon } from "./Icons";
 
 interface GenerationPanelProps {
@@ -30,13 +31,16 @@ export function GenerationPanel({
   const percent = segments.length ? Math.round((completed / segments.length) * 100) : 0;
 
   return (
-    <section className="generation-panel" aria-labelledby="generation-heading">
-      <div className="section-heading studio-heading">
-        <div>
-          <h2 id="generation-heading">Studio</h2>
-          <p>{narratorLabel || "Finish narrator setup to unlock generation."}</p>
+    <section className="sheet sheet--studio" aria-labelledby="generation-heading">
+      <div className="stage">
+        <div className="stage__top">
+          <span className="stage__numeral" aria-hidden="true">III</span>
+          <span className="stage__aside">
+            <WaveIcon className="heading-icon" />
+          </span>
         </div>
-        <WaveIcon className="heading-icon" />
+        <h2 id="generation-heading">Studio</h2>
+        <p className="stage__note">{narratorLabel || "Finish narrator setup to unlock generation."}</p>
       </div>
 
       <div className="generation-summary">
@@ -47,10 +51,16 @@ export function GenerationPanel({
         <strong>{percent}%</strong>
       </div>
       <div className="generation-progress" aria-label={`${percent}% generated`}>
-        <span style={{ width: `${percent}%` }} />
+        <span style={{ "--fill": percent / 100 } as CSSProperties} />
       </div>
 
-      <button className="button primary generate-button" type="button" disabled={!canGenerate || generating} onClick={onGenerate}>
+      <button
+        className="button primary generate-button"
+        type="button"
+        aria-busy={generating}
+        disabled={!canGenerate || generating}
+        onClick={onGenerate}
+      >
         <SparkIcon />
         {generating ? `Generating ${completed + 1} of ${segments.length}…` : completed ? "Resume audiobook" : "Generate audiobook"}
       </button>
@@ -80,8 +90,8 @@ export function GenerationPanel({
       )}
 
       {audioUrl && (
-        <div className="player-card">
-          <div>
+        <div className="player-plate">
+          <div className="player-plate__label">
             <span className="playing-label">Generated audio</span>
             <strong>Listen while the rest renders</strong>
           </div>
