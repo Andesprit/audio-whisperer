@@ -444,6 +444,7 @@ export default function App() {
           all self-hosted. <b>Licence</b> — GPL-3.0-or-later; see LICENSE for the full terms.
         </p>
         <p className="colophon__mark">Audio Whisperer</p>
+        <p><a className="andesprit-footer-link" href="https://andesprit.com" lang="en">copyright andesprit</a></p>
       </footer>
     </>
   );
