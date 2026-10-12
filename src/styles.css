@@ -1276,6 +1276,7 @@ textarea:disabled {
 .andesprit-footer-link {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   min-height: 44px;
   margin-block: 6px;
   color: inherit;
@@ -1287,4 +1288,11 @@ textarea:disabled {
 .andesprit-footer-link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 4px;
+}
+
+.andesprit-footer-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
 }
